@@ -727,6 +727,7 @@ impl Drop for EntryTrack<'_> {
 }
 
 #[cfg(test)]
+#[allow(clippy::unwrap_used)]
 mod tests {
 
     use crate::{
@@ -784,8 +785,7 @@ mod tests {
             .entry(entry_id)
             .unwrap()
             .attachments
-            .get("Attachment 1")
-            .is_some());
+            .contains_key("Attachment 1"));
 
         assert_eq!(
             db.entry(entry_id).unwrap().get(fields::TITLE).unwrap(),
